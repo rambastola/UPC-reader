@@ -22,7 +22,6 @@ def translate_left(num):
 
     return new_list
 
-
 def translate_right(z):
     """
     converts user's input to its binary numbers for the right side of the barcode.
@@ -41,7 +40,6 @@ def translate_right(z):
 
             list2.append(i)
     return list2
-
 
 def drawing(left, right, lamo):
     """
@@ -101,8 +99,6 @@ def line(a, drawlines, height):
     else:
         drawlines.penup()
 
-
-
     drawlines.left(90)
     drawlines.backward(height)
 
@@ -112,7 +108,6 @@ def line(a, drawlines, height):
     drawlines.penup()
     drawlines.fd(1)
     drawlines.pendown()
-
 
 def digit_12_check(x):
     """
@@ -163,7 +158,6 @@ def create_list(a):
     if newtotal != 0:
         newtotal = 10 - newtotal
 
-
     if newtotal == empty_list[-1]:
 
         return empty_list
@@ -185,9 +179,7 @@ def main():
 
     user = create_list(checked)
 
-
     le = translate_left(user)
-
 
     ri = translate_right(user)
 
