@@ -1,4 +1,3 @@
-
 import turtle
 
 def translate_left(num):
@@ -8,31 +7,25 @@ def translate_left(num):
     :param num: user input
     :return: a list of binary for each input
     """
-
     left = {0: "0001101", 1:"0011001", 2:"0010011", 3:"0111101", 4:"0100011",
              5:"0110001", 6:"0101111",7:"0111011", 8:"0110111",9:"0001011" }
-
     new_list = []
-
     for i in num:
         if i in left.keys():
             i = left[i]
 
             new_list.append(i)
-
     return new_list
 
 def translate_right(z):
     """
     converts user's input to its binary numbers for the right side of the barcode.
-
     :param z: user input
     :return: list of binary numbers for user's input
     """
 
     right = {0:"1110010", 1:"1100110", 2:"1101100", 3:"1000010", 4:"1011100", 5:"1001110",
              6:"1010000", 7:"1000100", 8:"1001000", 9:"1110100"}
-
     list2 = []
     for i in z:
         if i in right.keys():
@@ -44,7 +37,6 @@ def translate_right(z):
 def drawing(left, right, lamo):
     """
     draw lines for UPC barcode
-
     :param left: binary for the left side of barcode
     :param right: binary for the right side of barcode
     :return: nothing. program ends here.
@@ -65,12 +57,10 @@ def drawing(left, right, lamo):
     for t in left:
         for q in t:
             line(q, drawlines, 50)
-
     for i in mid:
         for a in i:
             line(a, drawlines, 70)
     for t in right:
-
         for w in t:
             line(w, drawlines, 50)
     for i in side_guard:
@@ -81,19 +71,16 @@ def drawing(left, right, lamo):
     drawlines.pendown()
 
     drawlines.write(lamo, font=("Arial", 26, "normal"))
-
     wn.exitonclick()
 
 def line(a, drawlines, height):
     """
-
     draw lines for barcode
     :param a: individual numbers of list
     :param drawlines: turtle that draws
     :param height: height of the lines
     :return: n/a, print's out on turtle window
     """
-
     if a == "1":
         drawlines.pendown()
     else:
@@ -116,26 +103,19 @@ def digit_12_check(x):
     :param x: input
     :return: input
     """
-
     while len(x) != 12 or x.isdigit() == False:
         x = input("Enter valid 12 digits UPC number: ")
-
     return x
 
 def create_list(a):
-
     """
     Solves to check the UPC is valid.
-
     :param x: list
     :return: valid list
     """
-
     empty_list = []
-
     for i in a:
         empty_list.append(int(i))
-
 
     odd = 0
     a = 0
@@ -144,13 +124,11 @@ def create_list(a):
         a += 2
 
     add = odd * 3
-
     even_sum = 0
     d = 1
     for i in range(5):
         even_sum += empty_list[d]
         d += 2
-
     total = add + even_sum
 
     # check modulus
@@ -159,13 +137,10 @@ def create_list(a):
         newtotal = 10 - newtotal
 
     if newtotal == empty_list[-1]:
-
         return empty_list
-
     elif newtotal != empty_list[-1]:
 
         #print error msg on turtle
-
         bond = turtle.Turtle()
         wn = turtle.Screen()
         bond.write("This is not a valid UPC number. Try again with correct UPC number.")
@@ -174,16 +149,10 @@ def create_list(a):
 def main():
 
     user = input("Enter 12 digits UPC number: ")
-
     checked = digit_12_check(user)
-
     user = create_list(checked)
-
     le = translate_left(user)
-
     ri = translate_right(user)
-
     drawing(le, ri, checked)
-
 
 main()
